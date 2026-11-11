@@ -1,0 +1,956 @@
+{
+ "squadra": "AS LUZZOGNO",
+ "nome_esteso": "A.S. Luzzogno",
+ "fondazione": 2002,
+ "campionato": "Calcio a 7 · CSI VCO · Open A girone A2",
+ "stagione": "2026/27",
+ "instagram": "",
+ "campo_casa": "Strona – campo sportivo",
+ "link_calendario_csi": "https://www.csivb.net/campionatiex?rq=eyJjdGFzayI6IjEwMSIsImNzcGlkIjoiMSIsImNzc2lkIjoiMTkiLCJjaWQiOiIzNDUiLCJzdGFydCI6IjAiLCJlbmQiOiIwIiwidGVtcCI6IjAifQ==",
+ "link_risultati_csi": "https://www.csivb.net/calcio/calcio-risultati-classifiche",
+ "rosa": [
+  {
+   "nome": "Manuel Alessi"
+  },
+  {
+   "nome": "Stefano Domenico Boretti"
+  },
+  {
+   "nome": "Filippo Botta"
+  },
+  {
+   "nome": "Luca Carbone"
+  },
+  {
+   "nome": "Alessandro Cerutti"
+  },
+  {
+   "nome": "Matteo Cerutti"
+  },
+  {
+   "nome": "Dennis Ciana"
+  },
+  {
+   "nome": "Marco Ciocca"
+  },
+  {
+   "nome": "Alex De Giuli"
+  },
+  {
+   "nome": "Matteo Femia"
+  },
+  {
+   "nome": "Alessandro Fornaro"
+  },
+  {
+   "nome": "Roberto Ietta"
+  },
+  {
+   "nome": "Simone Lomazzi"
+  },
+  {
+   "nome": "Michele Macrì"
+  },
+  {
+   "nome": "Stefano Maffioli"
+  },
+  {
+   "nome": "Gioele Mattazzi"
+  },
+  {
+   "nome": "Jacopo Napolitano"
+  },
+  {
+   "nome": "Simone Niglia"
+  },
+  {
+   "nome": "Lorenzo Perini"
+  },
+  {
+   "nome": "Filippo Piana"
+  },
+  {
+   "nome": "Giosuè Piana"
+  },
+  {
+   "nome": "Michele Piana"
+  },
+  {
+   "nome": "Stefano Piana"
+  },
+  {
+   "nome": "Ugo Piana"
+  },
+  {
+   "nome": "Leonardo Piana Morandi"
+  },
+  {
+   "nome": "Simone Piazza"
+  },
+  {
+   "nome": "Andrea Savoia"
+  },
+  {
+   "nome": "Marco Soldato"
+  },
+  {
+   "nome": "Tommaso Zanga"
+  },
+  {
+   "nome": "Enrico Zennaro"
+  }
+ ],
+ "classifica": {
+  "aggiornata_alla_giornata": 8,
+  "righe": [
+   {
+    "squadra": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+    "punti": 18,
+    "giocate": 7,
+    "v": 6,
+    "n": 0,
+    "p": 1,
+    "gf": 34,
+    "gs": 8
+   },
+   {
+    "squadra": "PRO DOMO ADHOC",
+    "punti": 15,
+    "giocate": 7,
+    "v": 5,
+    "n": 0,
+    "p": 2,
+    "gf": 28,
+    "gs": 20
+   },
+   {
+    "squadra": "U.F.O.B. GARBOLI",
+    "punti": 14,
+    "giocate": 7,
+    "v": 4,
+    "n": 2,
+    "p": 1,
+    "gf": 31,
+    "gs": 25
+   },
+   {
+    "squadra": "G.S. PREMIA",
+    "punti": 13,
+    "giocate": 7,
+    "v": 4,
+    "n": 1,
+    "p": 2,
+    "gf": 29,
+    "gs": 21
+   },
+   {
+    "squadra": "FULGOR VANZONE",
+    "punti": 13,
+    "giocate": 7,
+    "v": 4,
+    "n": 1,
+    "p": 2,
+    "gf": 25,
+    "gs": 22
+   },
+   {
+    "squadra": "AS LUZZOGNO",
+    "punti": 9,
+    "giocate": 8,
+    "v": 3,
+    "n": 0,
+    "p": 5,
+    "gf": 11,
+    "gs": 15
+   },
+   {
+    "squadra": "FLORICOLTURA SALETTI TRAFFIUME",
+    "punti": 9,
+    "giocate": 7,
+    "v": 3,
+    "n": 0,
+    "p": 4,
+    "gf": 21,
+    "gs": 26
+   },
+   {
+    "squadra": "BAR MILANO",
+    "punti": 3,
+    "giocate": 7,
+    "v": 1,
+    "n": 0,
+    "p": 6,
+    "gf": 14,
+    "gs": 32
+   },
+   {
+    "squadra": "AS MASSINO VISCONTI",
+    "punti": 0,
+    "giocate": 7,
+    "v": 0,
+    "n": 0,
+    "p": 7,
+    "gf": 8,
+    "gs": 32
+   }
+  ]
+ },
+ "giornate": [
+  {
+   "n": 1,
+   "partite": [
+    {
+     "data": "2026-09-19",
+     "ora": "15:00",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": 1,
+     "gol_ospite": 3
+    },
+    {
+     "data": "2026-09-19",
+     "ora": "15:00",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "BAR MILANO",
+     "gol_casa": 8,
+     "gol_ospite": 1
+    },
+    {
+     "data": "2026-09-19",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": 3,
+     "gol_ospite": 5
+    },
+    {
+     "data": "2026-09-23",
+     "ora": "20:45",
+     "campo": "DOMODOSSOLA - CUROTTI",
+     "casa": "G.S. PREMIA",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": 4,
+     "gol_ospite": 2
+    }
+   ],
+   "riposa": "AS MASSINO VISCONTI"
+  },
+  {
+   "n": 2,
+   "partite": [
+    {
+     "data": "2026-09-26",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "BAR MILANO",
+     "gol_casa": 5,
+     "gol_ospite": 2
+    },
+    {
+     "data": "2026-09-26",
+     "ora": "16:00",
+     "campo": "PREMIA fraz. PIODA - CAMPO",
+     "casa": "G.S. PREMIA",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": 5,
+     "gol_ospite": 1
+    },
+    {
+     "data": "2026-09-26",
+     "ora": "16:15",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": 4,
+     "gol_ospite": 0
+    },
+    {
+     "data": "2026-09-26",
+     "ora": "16:15",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": 0,
+     "gol_ospite": 2
+    }
+   ],
+   "riposa": "U.F.O.B. GARBOLI"
+  },
+  {
+   "n": 3,
+   "partite": [
+    {
+     "data": "2026-10-03",
+     "ora": "14:30",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": 8,
+     "gol_ospite": 0
+    },
+    {
+     "data": "2026-10-03",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": 2,
+     "gol_ospite": 1
+    },
+    {
+     "data": "2026-10-03",
+     "ora": "15:00",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": 2,
+     "gol_ospite": 5
+    },
+    {
+     "data": "2026-10-03",
+     "ora": "16:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "BAR MILANO",
+     "gol_casa": 4,
+     "gol_ospite": 1
+    }
+   ],
+   "riposa": "G.S. PREMIA"
+  },
+  {
+   "n": 4,
+   "partite": [
+    {
+     "data": "2026-10-10",
+     "ora": "14:30",
+     "campo": "PREMIA fraz. PIODA - CAMPO",
+     "casa": "G.S. PREMIA",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": 3,
+     "gol_ospite": 5
+    },
+    {
+     "data": "2026-10-10",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": 3,
+     "gol_ospite": 3
+    },
+    {
+     "data": "2026-10-10",
+     "ora": "15:30",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": 4,
+     "gol_ospite": 1
+    },
+    {
+     "data": "2026-10-10",
+     "ora": "16:15",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": 0,
+     "gol_ospite": 3
+    }
+   ],
+   "riposa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI"
+  },
+  {
+   "n": 5,
+   "partite": [
+    {
+     "data": "2026-10-17",
+     "ora": "14:30",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": 3,
+     "gol_ospite": 0
+    },
+    {
+     "data": "2026-10-17",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": 4,
+     "gol_ospite": 1
+    },
+    {
+     "data": "2026-10-17",
+     "ora": "15:00",
+     "campo": "PREMIA fraz. PIODA - CAMPO",
+     "casa": "G.S. PREMIA",
+     "ospite": "BAR MILANO",
+     "gol_casa": 8,
+     "gol_ospite": 4
+    },
+    {
+     "data": "2026-10-19",
+     "ora": "20:30",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": 5,
+     "gol_ospite": 3
+    }
+   ],
+   "riposa": "PRO DOMO ADHOC"
+  },
+  {
+   "n": 6,
+   "partite": [
+    {
+     "data": "2026-10-24",
+     "ora": "14:15",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": 2,
+     "gol_ospite": 3
+    },
+    {
+     "data": "2026-10-24",
+     "ora": "15:30",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": 7,
+     "gol_ospite": 0
+    },
+    {
+     "data": "2026-10-24",
+     "ora": "16:30",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": 1,
+     "gol_ospite": 4
+    },
+    {
+     "data": "2026-10-24",
+     "ora": "18:00",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": 8,
+     "gol_ospite": 1
+    }
+   ],
+   "riposa": "FULGOR VANZONE"
+  },
+  {
+   "n": 7,
+   "partite": [
+    {
+     "data": "2026-10-31",
+     "ora": "15:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": 9,
+     "gol_ospite": 5
+    },
+    {
+     "data": "2026-10-31",
+     "ora": "15:00",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": 2,
+     "gol_ospite": 4
+    },
+    {
+     "data": "2026-10-31",
+     "ora": "15:00",
+     "campo": "PREMIA fraz. PIODA - CAMPO",
+     "casa": "G.S. PREMIA",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": 4,
+     "gol_ospite": 4
+    },
+    {
+     "data": "2026-10-31",
+     "ora": "16:00",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": 1,
+     "gol_ospite": 2
+    }
+   ],
+   "riposa": "BAR MILANO"
+  },
+  {
+   "n": 8,
+   "partite": [
+    {
+     "data": "2026-11-05",
+     "ora": "20:30",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": 8,
+     "gol_ospite": 5
+    },
+    {
+     "data": "2026-11-07",
+     "ora": "15:00",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "BAR MILANO",
+     "gol_casa": 3,
+     "gol_ospite": 0
+    },
+    {
+     "data": "2026-11-07",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": 3,
+     "gol_ospite": 1
+    },
+    {
+     "data": "2026-11-07",
+     "ora": "15:30",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": 4,
+     "gol_ospite": 1
+    }
+   ],
+   "riposa": "FLORICOLTURA SALETTI TRAFFIUME"
+  },
+  {
+   "n": 9,
+   "partite": [
+    {
+     "data": "2026-11-14",
+     "ora": "14:30",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-14",
+     "ora": "15:00",
+     "campo": "PREMIA fraz. PIODA - CAMPO",
+     "casa": "G.S. PREMIA",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-14",
+     "ora": "16:15",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-14",
+     "ora": "16:45",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "AS LUZZOGNO"
+  },
+  {
+   "n": 10,
+   "partite": [
+    {
+     "data": "2026-11-21",
+     "ora": "15:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-21",
+     "ora": "15:30",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-21",
+     "ora": "16:00",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-21",
+     "ora": "18:00",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "AS MASSINO VISCONTI"
+  },
+  {
+   "n": 11,
+   "partite": [
+    {
+     "data": "2026-11-28",
+     "ora": "14:15",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-28",
+     "ora": "15:00",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-28",
+     "ora": "15:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-11-28",
+     "ora": "16:45",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "U.F.O.B. GARBOLI"
+  },
+  {
+   "n": 12,
+   "partite": [
+    {
+     "data": "2026-12-05",
+     "ora": "15:00",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-05",
+     "ora": "15:00",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-05",
+     "ora": "16:00",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-05",
+     "ora": "18:00",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "G.S. PREMIA"
+  },
+  {
+   "n": 13,
+   "partite": [
+    {
+     "data": "2026-12-12",
+     "ora": "15:00",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "BAR MILANO",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-12",
+     "ora": "15:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-12",
+     "ora": "16:00",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-12",
+     "ora": "18:00",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI"
+  },
+  {
+   "n": 14,
+   "partite": [
+    {
+     "data": "2026-12-19",
+     "ora": "15:00",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-19",
+     "ora": "15:00",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-19",
+     "ora": "15:00",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2026-12-19",
+     "ora": "18:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "PRO DOMO ADHOC"
+  },
+  {
+   "n": 15,
+   "partite": [
+    {
+     "data": "2027-01-30",
+     "ora": "15:00",
+     "campo": "PREMIA fraz. PIODA - CAMPO",
+     "casa": "G.S. PREMIA",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-01-30",
+     "ora": "15:00",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-01-30",
+     "ora": "15:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-01-30",
+     "ora": "16:00",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "BAR MILANO",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "FULGOR VANZONE"
+  },
+  {
+   "n": 16,
+   "partite": [
+    {
+     "data": "2027-02-06",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "FLORICOLTURA SALETTI TRAFFIUME",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-06",
+     "ora": "15:00",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-06",
+     "ora": "15:00",
+     "campo": "STRONA - CAMPO",
+     "casa": "AS LUZZOGNO",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-06",
+     "ora": "18:00",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "BAR MILANO"
+  },
+  {
+   "n": 17,
+   "partite": [
+    {
+     "data": "2027-02-13",
+     "ora": "15:00",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "BAR MILANO",
+     "ospite": "AS LUZZOGNO",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-13",
+     "ora": "15:00",
+     "campo": "PREMIA fraz. PIODA - CAMPO",
+     "casa": "G.S. PREMIA",
+     "ospite": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-13",
+     "ora": "15:00",
+     "campo": "MASSINO VISCONTI - CAMPO",
+     "casa": "AS MASSINO VISCONTI",
+     "ospite": "FULGOR VANZONE",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-13",
+     "ora": "16:00",
+     "campo": "DOMODOSSOLA - NOSERE",
+     "casa": "PRO DOMO ADHOC",
+     "ospite": "U.F.O.B. GARBOLI",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "FLORICOLTURA SALETTI TRAFFIUME"
+  },
+  {
+   "n": 18,
+   "partite": [
+    {
+     "data": "2027-02-20",
+     "ora": "15:00",
+     "campo": "TRAFFIUME - ORATORIO",
+     "casa": "FLORICOLTURA SALETTI TRAFFIUME",
+     "ospite": "AS MASSINO VISCONTI",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-20",
+     "ora": "15:00",
+     "campo": "VANZONE SAN CARLO - CAMPO",
+     "casa": "FULGOR VANZONE",
+     "ospite": "G.S. PREMIA",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-20",
+     "ora": "15:00",
+     "campo": "VERBANIA - SAN FRANCESCO",
+     "casa": "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI",
+     "ospite": "PRO DOMO ADHOC",
+     "gol_casa": null,
+     "gol_ospite": null
+    },
+    {
+     "data": "2027-02-20",
+     "ora": "18:00",
+     "campo": "BAVENO - CAMPO",
+     "casa": "U.F.O.B. GARBOLI",
+     "ospite": "BAR MILANO",
+     "gol_casa": null,
+     "gol_ospite": null
+    }
+   ],
+   "riposa": "AS LUZZOGNO"
+  }
+ ]
+}
