@@ -947,7 +947,10 @@ if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch
   const box=document.getElementById('install'), btn=document.getElementById('instBtn');
   const yes=document.getElementById('instYes'), no=document.getElementById('instNo'), txt=document.getElementById('instTxt');
   const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
-  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const ua=navigator.userAgent;
+  const isIOS=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const isFirefoxAndroid=/android/i.test(ua)&&/firefox/i.test(ua);   // Firefox non ha il prompt automatico: si installa dal menu ⋮
+  const manual=isIOS?'ios':isFirefoxAndroid?'firefox':null;
   const KEY='luzz-install-snooze', SNOOZE=14*864e5;   // "Non ora" = non riproporlo per 14 giorni
   const snoozed=()=>{try{return Date.now()<+(localStorage.getItem(KEY)||0);}catch{return false;}};
   let deferred=null;
@@ -957,14 +960,18 @@ if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch
     if(!force&&(snoozed()||dlg.open))return;
     if(deferred){yes.hidden=false;no.textContent='Non ora';
       txt.textContent="Risultati, classifica e tabellini dell'A.S. Luzzogno sempre a portata di mano, anche offline.";}
-    else if(isIOS){yes.hidden=true;no.textContent='Ho capito';
-      txt.innerHTML=`Tocca <svg class="share" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> <b style="display:inline;font:inherit;text-transform:none;letter-spacing:0">Condividi</b> e poi <b style="display:inline;font:inherit;text-transform:none;letter-spacing:0">«Aggiungi alla schermata Home»</b>.`;}
+    else if(manual){yes.hidden=true;no.textContent='Ho capito';
+      const B=s=>`<b style="display:inline;font:inherit;font-weight:700;text-transform:none;letter-spacing:0">${s}</b>`;
+      txt.innerHTML=manual==='ios'
+        ?`Tocca <svg class="share" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> ${B('Condividi')} e poi ${B('«Aggiungi alla schermata Home»')}.`
+        :`Tocca il menu ${B('⋮')} di Firefox e poi ${B('«Installa»')} (o ${B('«Aggiungi alla schermata Home»')}).`;}
     else return;
     box.hidden=false;
   }
-  addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;btn.hidden=false;setTimeout(show,5000);});
+  // appena il browser segnala che l'app è installabile, mostra subito il popup
+  addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;btn.hidden=false;show();});
   addEventListener('appinstalled',()=>{deferred=null;hide();btn.hidden=true;});
-  if(isIOS){btn.hidden=false;setTimeout(show,5000);}
+  if(manual){btn.hidden=false;show();}
   btn.onclick=()=>show(true);
   yes.onclick=async()=>{if(!deferred)return;hide();deferred.prompt();
     await deferred.userChoice.catch(()=>null);
