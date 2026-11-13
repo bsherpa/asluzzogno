@@ -8,6 +8,116 @@
  "campo_casa": "Strona – campo sportivo",
  "link_calendario_csi": "https://www.csivb.net/campionatiex?rq=eyJjdGFzayI6IjEwMSIsImNzcGlkIjoiMSIsImNzc2lkIjoiMTkiLCJjaWQiOiIzNDUiLCJzdGFydCI6IjAiLCJlbmQiOiIwIiwidGVtcCI6IjAifQ==",
  "link_risultati_csi": "https://www.csivb.net/calcio/calcio-risultati-classifiche",
+ "loghi": {
+  "S.ANNA HE.SIO VERBANIA REGNO DI NAPOLI": "",
+  "PRO DOMO ADHOC": "",
+  "U.F.O.B. GARBOLI": "",
+  "G.S. PREMIA": "",
+  "FULGOR VANZONE": "",
+  "FLORICOLTURA SALETTI TRAFFIUME": "",
+  "BAR MILANO": "",
+  "AS MASSINO VISCONTI": ""
+ },
+ "tabellini": {
+  "1": {
+   "marcatori": [
+    {
+     "nome": "Luca Carbone",
+     "gol": 1
+    }
+   ],
+   "assist": [
+    {
+     "nome": "Giosuè Piana",
+     "n": 1
+    }
+   ]
+  },
+  "3": {
+   "marcatori": [
+    {
+     "nome": "Enrico Zennaro",
+     "gol": 1
+    }
+   ],
+   "assist": [
+    {
+     "nome": "Giosuè Piana",
+     "n": 1
+    }
+   ]
+  },
+  "5": {
+   "marcatori": [
+    {
+     "nome": "Tommaso Zanga",
+     "gol": 2
+    },
+    {
+     "nome": "Matteo Cerutti",
+     "gol": 1
+    }
+   ]
+  },
+  "6": {
+   "marcatori": [
+    {
+     "nome": "Enrico Zennaro",
+     "gol": 1
+    }
+   ],
+   "assist": [
+    {
+     "nome": "Manuel Alessi",
+     "n": 1
+    }
+   ]
+  },
+  "7": {
+   "marcatori": [
+    {
+     "nome": "Luca Carbone",
+     "gol": 1
+    },
+    {
+     "nome": "Alex De Giuli",
+     "gol": 1
+    }
+   ],
+   "assist": [
+    {
+     "nome": "Alex De Giuli",
+     "n": 1
+    }
+   ]
+  },
+  "8": {
+   "marcatori": [
+    {
+     "nome": "Manuel Alessi",
+     "gol": 1
+    },
+    {
+     "nome": "Enrico Zennaro",
+     "gol": 1
+    },
+    {
+     "nome": "Giosuè Piana",
+     "gol": 1
+    }
+   ],
+   "assist": [
+    {
+     "nome": "Matteo Cerutti",
+     "n": 1
+    },
+    {
+     "nome": "Luca Carbone",
+     "n": 1
+    }
+   ]
+  }
+ },
  "rosa": [
   {
    "nome": "Manuel Alessi"
