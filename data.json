@@ -120,93 +120,123 @@
  },
  "rosa": [
   {
+   "numero": 8,
    "nome": "Manuel Alessi"
   },
   {
+   "numero": 15,
    "nome": "Stefano Domenico Boretti"
   },
   {
+   "numero": 27,
    "nome": "Filippo Botta"
   },
   {
+   "numero": 2,
    "nome": "Luca Carbone"
   },
   {
-   "nome": "Alessandro Cerutti"
+   "nome": "Alessandro Cerutti",
+   "ruolo": "Allenatore"
   },
   {
+   "numero": 9,
    "nome": "Matteo Cerutti"
   },
   {
+   "numero": 99,
    "nome": "Dennis Ciana"
   },
   {
+   "numero": 3,
    "nome": "Marco Ciocca"
   },
   {
+   "numero": 7,
    "nome": "Alex De Giuli"
   },
   {
+   "numero": 85,
    "nome": "Matteo Femia"
   },
   {
+   "numero": 18,
    "nome": "Alessandro Fornaro"
   },
   {
+   "numero": 15,
    "nome": "Roberto Ietta"
   },
   {
+   "numero": 44,
    "nome": "Simone Lomazzi"
   },
   {
+   "numero": 6,
    "nome": "Michele Macrì"
   },
   {
+   "numero": 22,
    "nome": "Stefano Maffioli"
   },
   {
+   "numero": 1,
    "nome": "Gioele Mattazzi"
   },
   {
+   "numero": 90,
    "nome": "Jacopo Napolitano"
   },
   {
+   "numero": 4,
    "nome": "Simone Niglia"
   },
   {
+   "numero": 69,
    "nome": "Lorenzo Perini"
   },
   {
+   "numero": 19,
    "nome": "Filippo Piana"
   },
   {
+   "numero": 21,
    "nome": "Giosuè Piana"
   },
   {
+   "numero": 23,
    "nome": "Michele Piana"
   },
   {
+   "numero": 14,
    "nome": "Stefano Piana"
   },
   {
+   "numero": 24,
    "nome": "Ugo Piana"
   },
   {
+   "numero": 20,
    "nome": "Leonardo Piana Morandi"
   },
   {
+   "numero": 12,
    "nome": "Simone Piazza"
   },
   {
+   "numero": 19,
    "nome": "Andrea Savoia"
   },
   {
+   "numero": 28,
    "nome": "Marco Soldato"
   },
   {
+   "numero": 11,
    "nome": "Tommaso Zanga"
   },
   {
+   "numero": 10,
    "nome": "Enrico Zennaro"
   }
  ],
