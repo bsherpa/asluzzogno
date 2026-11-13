@@ -1,7 +1,11 @@
 {
   "name": "A.S. Luzzogno",
   "short_name": "AS Luzzogno",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
+  "lang": "it",
+  "description": "Calendario, risultati, giocatori e classifica dell'A.S. Luzzogno – CSI VCO calcio a 7",
   "display": "standalone",
   "background_color": "#111111",
   "theme_color": "#111111",

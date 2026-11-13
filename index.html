@@ -213,6 +213,17 @@ dialog.modal::backdrop{background:rgba(0,0,0,.6)}
 .err{color:var(--loss);font-size:13px;margin-top:8px;min-height:1em}
 .hint{font-size:12px;color:var(--muted);margin-top:4px}
 
+/* INSTALLA APP */
+.install{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;max-width:520px;margin:0 auto;background:var(--black);color:#fff;border-radius:18px;padding:14px;display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;box-shadow:0 12px 40px rgba(0,0,0,.35);border-top:4px solid var(--orange);animation:instUp .35s ease}
+.install[hidden],.install [hidden]{display:none}
+.install img{width:52px;height:52px;border-radius:12px;background:#fff}
+.install b{display:block;font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em;font-size:17px;font-weight:600}
+.install span{display:block;font-size:13px;opacity:.85;margin-top:2px}
+.install .share{display:inline-block;vertical-align:-3px;margin:0 2px}
+.install .ia{grid-column:1/-1;display:flex;gap:8px;justify-content:flex-end}
+.install .btn.ghost{background:#2a2a2a;color:#fff}
+@keyframes instUp{from{transform:translateY(24px);opacity:0}}
+
 footer{margin-top:28px;background:var(--black);color:#ddd;padding:24px 0 calc(24px + env(safe-area-inset-bottom));font-size:13px}
 footer a{color:var(--orange)}
 footer p+p{margin-top:6px}
@@ -227,7 +238,7 @@ footer p+p{margin-top:6px}
       <h1 id="teamName">A.S. Luzzogno</h1>
       <div class="sub" id="sub">Calcio a 7 · CSI VCO</div>
       <span class="since" id="since">DAL 2002</span><a class="ig" id="ig" hidden target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a><button class="ig staffbtn" id="staffBtn" type="button">Area staff</button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram</a><button class="ig staffbtn" id="instBtn" type="button" hidden>Installa l'app</button><button class="ig staffbtn" id="staffBtn" type="button">Area staff</button>
     </div>
   </div>
 </header>
@@ -270,6 +281,12 @@ footer p+p{margin-top:6px}
 </main>
 
 <dialog class="modal" id="dlg"></dialog>
+
+<div class="install" id="install" hidden role="dialog" aria-labelledby="instTitle">
+  <img src="media/icon-192.png" alt="">
+  <div><b id="instTitle">Installa l'app</b><span id="instTxt">Risultati, classifica e tabellini dell'A.S. Luzzogno sempre a portata di mano, anche offline.</span></div>
+  <div class="ia"><button class="btn ghost" id="instNo" type="button">Non ora</button><button class="btn primary" id="instYes" type="button">Installa</button></div>
+</div>
 
 <footer><div class="wrap">
   <p><b>A.S. Luzzogno</b> · <span id="fCamp"></span></p>
@@ -923,6 +940,37 @@ const links=[...document.querySelectorAll('nav a')];
 const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));}),{rootMargin:'-40% 0px -55% 0px'});
 document.querySelectorAll('section').forEach(s=>obs.observe(s));
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+/* ================= INSTALLA L'APP ================= */
+// Android/Chrome/Edge: prompt del browser (beforeinstallprompt). iPhone/iPad: istruzioni "Aggiungi alla schermata Home".
+(()=>{
+  const box=document.getElementById('install'), btn=document.getElementById('instBtn');
+  const yes=document.getElementById('instYes'), no=document.getElementById('instNo'), txt=document.getElementById('instTxt');
+  const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const KEY='luzz-install-snooze', SNOOZE=14*864e5;   // "Non ora" = non riproporlo per 14 giorni
+  const snoozed=()=>{try{return Date.now()<+(localStorage.getItem(KEY)||0);}catch{return false;}};
+  let deferred=null;
+  if(standalone)return;   // già installata
+  const hide=()=>{box.hidden=true;};
+  function show(force){
+    if(!force&&(snoozed()||dlg.open))return;
+    if(deferred){yes.hidden=false;no.textContent='Non ora';
+      txt.textContent="Risultati, classifica e tabellini dell'A.S. Luzzogno sempre a portata di mano, anche offline.";}
+    else if(isIOS){yes.hidden=true;no.textContent='Ho capito';
+      txt.innerHTML=`Tocca <svg class="share" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> <b style="display:inline;font:inherit;text-transform:none;letter-spacing:0">Condividi</b> e poi <b style="display:inline;font:inherit;text-transform:none;letter-spacing:0">«Aggiungi alla schermata Home»</b>.`;}
+    else return;
+    box.hidden=false;
+  }
+  addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;btn.hidden=false;setTimeout(show,5000);});
+  addEventListener('appinstalled',()=>{deferred=null;hide();btn.hidden=true;});
+  if(isIOS){btn.hidden=false;setTimeout(show,5000);}
+  btn.onclick=()=>show(true);
+  yes.onclick=async()=>{if(!deferred)return;hide();deferred.prompt();
+    await deferred.userChoice.catch(()=>null);
+    deferred=null;btn.hidden=true;};   // il prompt si usa una volta sola; se serve, il browser lo ripropone più avanti
+  no.onclick=()=>{hide();try{localStorage.setItem(KEY,String(Date.now()+SNOOZE));}catch{}};
+})();
 </script>
 </body>
 </html>
