@@ -45,6 +45,31 @@ Per cambiarla: modifica la variabile e rifai il deploy; chi era dentro dovrà ri
 Statistiche **Giocatori** (presenze, gol, assist, gol subiti, capocannoniere ecc.)
 sono calcolate in automatico dai tabellini.
 
+## Multe (riservate alla squadra)
+Sezione **Multe** nel menu. Si vede **solo con password**: le multe non sono mai pubbliche né in cache
+(funzione `netlify/functions/multe.mjs`, `/api/multe`, dati su Netlify Blobs nell'archivio `luzzogno-multe`).
+
+- **Giocatori**: entrano con la password della squadra (variabile `GIOCATORI_PASSWORD`), che resta salvata
+  sul telefono. Le volte dopo vedono subito il totale da pagare, la cassa, le ultime multe e il dettaglio per giocatore.
+- **Staff** (con la password staff):
+  - **+ Assegna multa**: si sceglie il giocatore, poi la multa. L'importo si compila da solo ma si può cambiare; data e nota sono facoltative.
+  - **Elenco multe**: nome e importo di ogni multa.
+  - toccando un giocatore: **Segna pagata / Non pagata**, oppure ✕ per eliminare.
+
+  Cambiare un importo nell'elenco non modifica le multe già date.
+  Rinominando un giocatore nella rosa, il nome cambia anche nelle sue multe.
+
+**Impostare la password giocatori (una volta sola):** come per `STAFF_PASSWORD`: Environment variables →
+chiave `GIOCATORI_PASSWORD` → Trigger deploy. Deve essere **diversa** da quella staff.
+
+**Notifiche push:** in Multe → **🔔 Notifiche** → scegli "Tutte le multe" o "Solo <nome>" → Attiva.
+Arriva subito una notifica di prova, poi una per ogni nuova multa. Non serve configurare nulla:
+le chiavi si creano da sole al primo uso.
+- Android e computer: funziona da Chrome, Edge e Firefox, anche senza installare l'app.
+- **iPhone/iPad: funziona solo con l'app installata** (Safari → Condividi → «Aggiungi alla schermata Home»,
+  iOS 16.4 o successivo), aprendola dalla Home.
+- Il testo della notifica (nome, multa, importo) può comparire sulla schermata di blocco.
+
 ## Cosa modificare a mano (in `data.json`, direttamente su GitHub con la matita ✏️)
 Ogni modifica salvata su GitHub ripubblica il sito da sola (15 crediti su 300 al mese).
 

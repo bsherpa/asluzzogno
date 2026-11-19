@@ -213,6 +213,30 @@ dialog.modal::backdrop{background:rgba(0,0,0,.6)}
 .err{color:var(--loss);font-size:13px;margin-top:8px;min-height:1em}
 .hint{font-size:12px;color:var(--muted);margin-top:4px}
 
+/* MULTE */
+.mtot{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:4px}
+.mtot b{display:block;font-family:var(--disp);font-size:26px;font-weight:700;margin-top:2px}
+.mtot .due b{color:var(--loss)}.mtot .cassa b{color:var(--win)}
+.mplayer{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:12px;padding:10px 12px;margin-bottom:8px}
+.mplayer .num{font-family:var(--disp);font-size:20px;font-weight:700;color:var(--orange);min-width:28px;text-align:center}
+.mplayer .nm{flex:1;font-weight:600;font-size:14px;min-width:0}
+.mplayer .nm small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+.mplayer .due{font-family:var(--disp);font-weight:700;font-size:17px;color:var(--loss);white-space:nowrap}
+.mplayer .due.zero{color:var(--win)}
+.mrow{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;background:var(--card);border-radius:12px;padding:9px 12px;margin-bottom:6px;font-size:14px}
+.mrow .d{font-family:var(--disp);color:var(--muted);font-size:13px;min-width:44px;text-align:center;line-height:1.1;text-transform:uppercase}
+.mrow .t{flex:1;min-width:0}.mrow .t b{font-weight:600}.mrow .t small{display:block;color:var(--muted);font-size:12px}
+.mrow .imp{font-family:var(--disp);font-weight:700;font-size:16px;white-space:nowrap;color:var(--loss)}
+.mrow.paid .imp{color:var(--win)}.mrow.paid .imp::after{content:" ✓"}
+.mrow .ma{display:flex;gap:6px;flex-basis:100%;justify-content:flex-end;border-top:1px solid var(--line);padding-top:8px}
+.mrow .ma .btn{padding:6px 12px}.mrow .ma .xbtn{width:36px;height:32px}
+.lockbox{text-align:center;padding:22px 16px}
+.lockbox b{display:block;font-family:var(--disp);text-transform:uppercase;letter-spacing:.04em;font-size:18px;margin-bottom:4px}
+.lockbox .btn{margin-top:12px}
+.mtools{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.crow{display:grid;grid-template-columns:1fr 72px 40px;gap:6px;margin-bottom:6px}
+.m2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
 /* INSTALLA APP */
 .install{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:50;max-width:520px;margin:0 auto;background:var(--black);color:#fff;border-radius:18px;padding:14px;display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;box-shadow:0 12px 40px rgba(0,0,0,.35);border-top:4px solid var(--orange);animation:instUp .35s ease}
 .install[hidden],.install [hidden]{display:none}
@@ -252,6 +276,7 @@ footer p+p{margin-top:6px}
   <a href="#partite" class="active">Partite</a>
   <a href="#giocatori">Giocatori</a>
   <a href="#classifica">Classifica</a>
+  <a href="#multe">Multe</a>
 </div></nav>
 
 <main class="wrap">
@@ -277,6 +302,11 @@ footer p+p{margin-top:6px}
     </table></div>
     <p class="note" id="tableNote"></p>
     <div id="staffLoghi"></div>
+  </section>
+
+  <section id="multe">
+    <h2>Multe</h2>
+    <div id="multeBox"></div>
   </section>
 </main>
 
@@ -409,6 +439,7 @@ function render(){
   renderMatches(ms,next);
   renderRoster();
   renderTable();
+  renderMulte();
 }
 
 function renderNext(m, ms, now){
@@ -756,7 +787,7 @@ function renderStaff(){
   document.getElementById('staffMatch').innerHTML=isStaff()?`<div class="staffbar"><span><b>Area staff</b> · tocca una partita per compilare il tabellino o inserire/correggere il risultato. In “Tutto il girone” puoi inserire anche i risultati delle altre partite.</span></div>`:'';
 }
 document.getElementById('staffBtn').onclick=()=>{
-  if(isStaff()){if(confirm('Uscire dall\'area staff su questo dispositivo?')){setPwd(null);render();}}
+  if(isStaff()){if(confirm('Uscire dall\'area staff su questo dispositivo?')){setPwd(null);M=null;render();loadMulte();}}
   else openLogin();
 };
 
@@ -769,7 +800,7 @@ function openLogin(){
   f.onsubmit=async e=>{
     e.preventDefault(); const btn=document.getElementById('lBtn'); btn.disabled=true; btn.textContent='Verifica…';
     PWD=f.p.value;
-    try{await api({action:'login'});setPwd(PWD);const j=await api({action:'load'});dlg.close();applyStaffData(j.data);render();}
+    try{await api({action:'login'});setPwd(PWD);const j=await api({action:'load'});dlg.close();applyStaffData(j.data);render();M=null;loadMulte();}
     catch(err){PWD=null;apiError(err,'lErr');btn.disabled=false;btn.textContent='Accedi';}
   };
 }
@@ -932,8 +963,216 @@ document.addEventListener('click',e=>{
   if((el=c('[data-tab]'))){openTabellino(el.dataset.tab);}
 });
 document.addEventListener('keydown',e=>{
-  if((e.key==='Enter'||e.key===' ')&&e.target.matches?.('[data-tab][role=button],[data-res][role=button]')){e.preventDefault();e.target.click();}
+  if((e.key==='Enter'||e.key===' ')&&e.target.matches?.('[data-tab][role=button],[data-res][role=button],[data-multe-player][role=button]')){e.preventDefault();e.target.click();}
 });
+
+/* ================= MULTE ================= */
+// Visibili solo con password: quella dei giocatori (GIOCATORI_PASSWORD, sola lettura) o quella staff (gestione).
+// La password giocatori resta salvata sul dispositivo, così le volte dopo le multe si vedono subito.
+let MPWD=null; try{MPWD=localStorage.getItem('luzz-multe');}catch{}
+let M=null, M_ERR='', M_AT=0;
+const mToken=()=>PWD||MPWD;
+const euro=n=>Number(n).toLocaleString('it-IT',{style:'currency',currency:'EUR'});
+const todayStr=()=>new Date().toLocaleDateString('sv-SE');
+const fmtDay=s=>{const d=new Date(s+'T12:00:00');return `${d.getDate()} ${MESI[d.getMonth()]}`;};
+const newest=(a,b)=>b.data.localeCompare(a.data)||(b.creata||'').localeCompare(a.creata||'');
+const byRosa=()=>[...(D?.rosa||[])].sort((x,y)=>(x.numero??999)-(y.numero??999)||x.nome.localeCompare(y.nome));
+const pLabel=p=>`${p.numero!=null?p.numero+' · ':''}${esc(p.nome)}`;
+function setMPwd(p){MPWD=p;try{p?localStorage.setItem('luzz-multe',p):localStorage.removeItem('luzz-multe');}catch{}}
+async function mApi(body,token=mToken()){
+  const r=await fetch('/api/multe',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify(body)});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok){const e=new Error(j.errore||`Errore ${r.status}`);e.status=r.status;throw e;}
+  return j;
+}
+function mError(err,elId){
+  if(err.status===401){if(PWD)setPwd(null);else setMPwd(null);M=null;render();}
+  const el=document.getElementById(elId);
+  if(el)el.textContent=err.status===401?'Password errata o cambiata: accedi di nuovo.':err.status===404&&!err.message.includes('Multa')?'Funzione multe non pubblicata.':err.message||'Errore di rete';
+}
+function setM(j){M={...(M||{}),...j};M_AT=Date.now();renderMulte();}
+async function loadMulte(){
+  if(!mToken())return renderMulte();
+  try{M_ERR='';setM(await mApi({action:'load'}));}
+  catch(x){if(x.status===401){if(PWD)setPwd(null);else setMPwd(null);M=null;render();}else{M_ERR=x.message||'Errore di rete';renderMulte();}}
+}
+
+function mRow(m,{nome=true,azioni=false}={}){
+  return `<div class="mrow ${m.pagata?'paid':''}"><div class="d">${fmtDay(m.data)}</div>
+    <div class="t"><b>${nome?esc(m.giocatore)+' · ':''}${esc(m.voce)}</b>${m.nota||m.pagata?`<small>${esc(m.nota||'')}${m.nota&&m.pagata?' · ':''}${m.pagata?'pagata'+(m.pagataIl?' il '+fmtDay(m.pagataIl):''):''}</small>`:''}</div>
+    <div class="imp">${euro(m.importo)}</div>
+    ${azioni?`<div class="ma"><button class="btn ${m.pagata?'ghost':'dark'}" data-m-pay="${m.id}">${m.pagata?'Non pagata':'Segna pagata'}</button><button class="xbtn" data-m-del="${m.id}" title="Elimina multa">✕</button></div>`:''}</div>`;
+}
+function renderMulte(){
+  const el=document.getElementById('multeBox'); if(!el)return;
+  if(!mToken()){el.innerHTML=`<div class="card lockbox">🔒<b>Riservato alla squadra</b><p class="note">Le multe sono visibili solo ai giocatori, con la password della squadra.</p><button class="btn primary" data-multe-login>Entra</button></div>`;return;}
+  if(!M){el.innerHTML=`<div class="empty">${M_ERR?esc(M_ERR)+' <button class="btn ghost" data-multe-reload>Riprova</button>':'Caricamento multe…'}</div>`;return;}
+  const staff=M.ruolo==='staff', R=new Map(byRosa().map(p=>[p.nome.toLowerCase(),p])), per=new Map();
+  for(const m of M.multe){const k=m.giocatore.toLowerCase();const p=per.get(k)||{nome:m.giocatore,dov:0,pag:0,n:0};p.n++;m.pagata?p.pag+=m.importo:p.dov+=m.importo;per.set(k,p);}
+  const rows=[...per.values()].sort((a,b)=>b.dov-a.dov||b.pag-a.pag||a.nome.localeCompare(b.nome));
+  const dov=rows.reduce((s,p)=>s+p.dov,0), pag=rows.reduce((s,p)=>s+p.pag,0);
+  const recent=[...M.multe].sort(newest).slice(0,5);
+  el.innerHTML=`${staff?`<div class="staffbar"><span><b>Area staff</b> · multe</span><span style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn ghost" data-multe-cat>Elenco multe</button><button class="btn primary" data-multe-add>+ Assegna multa</button></span></div>`:''}
+    <div class="mtot"><div class="card due"><div class="label">Da pagare</div><b>${euro(dov)}</b></div><div class="card cassa"><div class="label">In cassa</div><b>${euro(pag)}</b></div></div>
+    ${recent.length?`<div class="roster-group">Ultime multe</div>${recent.map(m=>mRow(m)).join('')}`:''}
+    <div class="roster-group">Per giocatore</div>
+    ${rows.length?rows.map(p=>{const r=R.get(p.nome.toLowerCase());return `<div class="mplayer click" role="button" tabindex="0" data-multe-player="${esc(p.nome)}">
+      <span class="num">${r?.numero??''}</span><span class="nm">${esc(p.nome)}<small>${p.n} ${p.n===1?'multa':'multe'}${p.pag?` · pagati ${euro(p.pag)}`:''}</small></span>
+      <span class="due ${p.dov?'':'zero'}">${p.dov?euro(p.dov):'in regola ✓'}</span></div>`;}).join(''):'<div class="empty">Nessuna multa, per ora 😇</div>'}
+    <div class="mtools"><button class="btn ghost" data-multe-push>🔔 Notifiche</button>${!PWD?'<button class="btn ghost" data-multe-logout>Esci</button>':''}</div>`;
+}
+
+function openMulteLogin(){
+  dlg.innerHTML=`<div class="mhead"><h3>Multe</h3><p>Inserisci la password della squadra. Resterà salvata su questo dispositivo.</p></div>
+    <div class="mbody"><form id="mlf"><label class="fld"><span>Password squadra</span><input type="password" name="p" autocomplete="current-password" required></label><p class="err" id="mlErr"></p></form></div>
+    <div class="mfoot"><button class="btn ghost" data-close>Annulla</button><button class="btn primary" type="submit" form="mlf" id="mlBtn">Entra</button></div>`;
+  if(!dlg.open)dlg.showModal();
+  const f=document.getElementById('mlf'); f.p.focus();
+  f.onsubmit=async e=>{
+    e.preventDefault(); const btn=document.getElementById('mlBtn'); btn.disabled=true; btn.textContent='Verifica…';
+    try{const j=await mApi({action:'load'},f.p.value);setMPwd(f.p.value);dlg.close();setM(j);}
+    catch(x){document.getElementById('mlErr').textContent=x.status===401?'Password errata.':x.message;btn.disabled=false;btn.textContent='Entra';}
+  };
+}
+
+function openMultePlayer(nome){
+  const L=M.multe.filter(m=>m.giocatore.toLowerCase()===nome.toLowerCase()).sort(newest);
+  if(!L.length){dlg.open&&dlg.close();return;}
+  const staff=M.ruolo==='staff', dov=L.filter(m=>!m.pagata).reduce((s,m)=>s+m.importo,0);
+  dlg.innerHTML=`<div class="mhead"><h3>${esc(nome)}</h3><p>${L.length} ${L.length===1?'multa':'multe'} · da pagare <b>${euro(dov)}</b></p></div>
+    <div class="mbody">${L.map(m=>mRow(m,{nome:false,azioni:staff})).join('')}<p class="err" id="mpErr"></p></div>
+    <div class="mfoot">${staff?`<button class="btn ghost" data-multe-add="${esc(nome)}">+ Multa</button>`:''}<button class="btn primary" data-close>Chiudi</button></div>`;
+  dlg._mplayer=nome;
+  if(!dlg.open)dlg.showModal();
+}
+
+function addMulta(pre='',msg=''){
+  if(!M.catalogo.length){editCatalogo('!Prima crea l\'elenco delle multe con il loro importo.');return;}
+  const players=byRosa();
+  dlg.innerHTML=`<div class="mhead"><h3>Assegna multa</h3><p>Scegli il giocatore e la multa: l'importo si compila da solo (puoi cambiarlo).</p></div>
+    <div class="mbody"><form id="mf" onsubmit="return false">
+      <label class="fld"><span>Giocatore</span><select name="g"><option value="">— scegli —</option>${players.map(p=>`<option value="${esc(p.nome)}" ${p.nome===pre?'selected':''}>${pLabel(p)}</option>`).join('')}</select></label>
+      <label class="fld"><span>Multa</span><select name="v"><option value="">— scegli —</option>${M.catalogo.map(v=>`<option value="${esc(v.id)}" data-imp="${v.importo}">${esc(v.nome)} · ${euro(v.importo)}</option>`).join('')}</select></label>
+      <div class="m2"><label class="fld"><span>Importo €</span><input name="imp" inputmode="decimal" placeholder="0,00"></label>
+        <label class="fld"><span>Data</span><input type="date" name="d" value="${todayStr()}" max="${todayStr()}"></label></div>
+      <label class="fld"><span>Nota (facoltativa)</span><input name="nota" maxlength="140" placeholder="es. 15 minuti di ritardo"></label>
+      <p class="${msg.startsWith('!')?'err':'ok'}" id="mErr">${esc(msg.replace(/^!/,''))}</p></form></div>
+    <div class="mfoot"><button class="btn ghost" data-close>Chiudi</button><button class="btn primary" id="mSave">Assegna</button></div>`;
+  if(!dlg.open)dlg.showModal();
+  const f=document.getElementById('mf');
+  f.v.onchange=()=>{const o=f.v.selectedOptions[0];f.imp.value=o?.dataset.imp?String(o.dataset.imp).replace('.',','):'';};
+  document.getElementById('mSave').onclick=async e=>{
+    const btn=e.currentTarget, err=document.getElementById('mErr'); err.className='err'; err.textContent='';
+    if(!f.g.value){err.textContent='Scegli il giocatore.';return;}
+    if(!f.v.value){err.textContent='Scegli la multa.';return;}
+    const imp=f.imp.value.trim().replace(',','.');
+    if(imp!==''&&!(+imp>=0&&+imp<=1000)){err.textContent='Importo non valido.';return;}
+    btn.disabled=true;btn.textContent='Salvataggio…';
+    try{const j=await mApi({action:'addMulta',giocatore:f.g.value,voce:f.v.value,importo:imp,data:f.d.value,nota:f.nota.value.trim()});
+      setM(j);const n=j.notifiche||0;
+      addMulta('',`Multa assegnata a ${f.g.value}.${n?` Notifica inviata a ${n} ${n===1?'dispositivo':'dispositivi'}.`:''} Puoi assegnarne un'altra.`);}
+    catch(x){mError(x,'mErr');btn.disabled=false;btn.textContent='Assegna';}
+  };
+}
+
+const crow=(v={})=>`<div class="crow" data-id="${esc(v.id||'')}"><input name="nome" maxlength="60" placeholder="es. Ritardo allenamento" value="${esc(v.nome||'')}" aria-label="Multa">
+  <input name="imp" inputmode="decimal" placeholder="€" value="${v.importo!=null?String(v.importo).replace('.',','):''}" aria-label="Importo"><button type="button" class="xbtn" data-del title="Rimuovi">✕</button></div>`;
+function editCatalogo(msg=''){
+  dlg.innerHTML=`<div class="mhead"><h3>Elenco multe</h3><p>Nome e importo di ogni multa. Cambiare un importo non modifica le multe già assegnate.</p></div>
+    <div class="mbody"><div id="cList">${(M.catalogo.length?M.catalogo:[{}]).map(crow).join('')}</div>
+      <button type="button" class="btn ghost" data-cat-add>+ Aggiungi multa</button>
+      <p class="${msg.startsWith('!')?'err':'ok'}" id="cErr">${esc(msg.replace(/^!/,''))}</p></div>
+    <div class="mfoot"><button class="btn ghost" data-close>Annulla</button><button class="btn primary" id="cSave">Salva elenco</button></div>`;
+  if(!dlg.open)dlg.showModal();
+  document.getElementById('cSave').onclick=async e=>{
+    const btn=e.currentTarget, err=document.getElementById('cErr'); err.className='err'; err.textContent='';
+    const rows=[...dlg.querySelectorAll('.crow')].map(r=>({id:r.dataset.id||undefined,nome:r.querySelector('[name=nome]').value.trim(),imp:r.querySelector('[name=imp]').value.trim().replace(',','.')}))
+      .filter(r=>r.nome||r.imp);
+    if(rows.some(r=>!r.nome)){err.textContent='Ogni multa deve avere un nome.';return;}
+    if(rows.some(r=>r.imp===''||!(+r.imp>=0&&+r.imp<=1000))){err.textContent='Controlla gli importi (da 0 a 1000 €).';return;}
+    btn.disabled=true;btn.textContent='Salvataggio…';
+    try{setM(await mApi({action:'saveCatalogo',catalogo:rows.map(r=>({id:r.id,nome:r.nome,importo:+r.imp}))}));dlg.close();}
+    catch(x){mError(x,'cErr');btn.disabled=false;btn.textContent='Salva elenco';}
+  };
+}
+
+/* ---- notifiche push ---- */
+const swReady=()=>Promise.race([navigator.serviceWorker.ready,new Promise((_,r)=>setTimeout(()=>r(new Error("app non pronta, ricarica la pagina")),4000))]);
+const pushSupported=()=>'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window;
+const b64u=s=>{const b=atob((s+'='.repeat((4-s.length%4)%4)).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(b,c=>c.charCodeAt(0));};
+const sameKey=(sub,k)=>{const a=sub.options?.applicationServerKey;if(!a)return true;const x=new Uint8Array(a),y=b64u(k);return x.length===y.length&&x.every((v,i)=>v===y[i]);};
+async function openPush(msg=''){
+  const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+  let sub=null, chosen='';
+  try{chosen=localStorage.getItem('luzz-push-g')||'';}catch{}
+  if(pushSupported())try{sub=await (await swReady()).pushManager.getSubscription();}catch{}
+  let body;
+  if(!pushSupported())body=isIOS&&!standalone
+    ?`<p>Su iPhone le notifiche funzionano solo dall'app installata: tocca <b>Condividi</b> → <b>«Aggiungi alla schermata Home»</b>, apri l'app dalla Home e torna qui.</p>`
+    :`<p>Questo browser non supporta le notifiche. Prova con Chrome, Edge, Firefox o Safari aggiornati.</p>`;
+  else if(Notification.permission==='denied')body=`<p>Le notifiche per questo sito sono <b>bloccate</b>. Riattivale dalle impostazioni del browser (icona accanto all'indirizzo, oppure Impostazioni → Notifiche) e riprova.</p>`;
+  else body=`<p>${sub?'✅ Notifiche <b>attive</b> su questo dispositivo.':'Ricevi un avviso sul telefono quando arriva una nuova multa.'}</p>
+    <label class="fld"><span>Avvisami per</span><select id="pushG"><option value="">Tutte le multe della squadra</option>${byRosa().map(p=>`<option value="${esc(p.nome)}" ${p.nome===chosen?'selected':''}>Solo ${esc(p.nome)}</option>`).join('')}</select></label>`;
+  const can=pushSupported()&&Notification.permission!=='denied';
+  dlg.innerHTML=`<div class="mhead"><h3>Notifiche multe</h3></div>
+    <div class="mbody" style="font-size:14px">${body}<p class="${msg.startsWith('!')?'err':'ok'}" id="pErr">${esc(msg.replace(/^!/,''))}</p></div>
+    <div class="mfoot">${can&&sub?'<button class="btn ghost" id="pOff">Disattiva</button>':''}<button class="btn ghost" data-close>Chiudi</button>${can?`<button class="btn primary" id="pOn">${sub?'Aggiorna':'Attiva notifiche'}</button>`:''}</div>`;
+  if(!dlg.open)dlg.showModal();
+  const on=document.getElementById('pOn'), off=document.getElementById('pOff');
+  if(on)on.onclick=()=>{
+    const g=document.getElementById('pushG').value;
+    const perm=Notification.requestPermission();   // va chiamata subito, dentro il tocco (Safari)
+    on.disabled=true;on.textContent='Attivazione…';
+    (async()=>{
+      if(await perm!=='granted')return openPush('!Permesso negato: senza permesso non possiamo inviarti notifiche.');
+      if(!M?.vapid)await loadMulte();
+      const reg=await swReady();
+      let s=await reg.pushManager.getSubscription();
+      if(s&&!sameKey(s,M.vapid)){await s.unsubscribe();s=null;}
+      if(!s)s=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(M.vapid)});
+      await mApi({action:'subscribe',sub:s.toJSON(),giocatore:g||null});
+      try{localStorage.setItem('luzz-push-g',g);}catch{}
+      openPush('Fatto! Dovresti ricevere subito una notifica di prova.');
+    })().catch(x=>{if(x.status)mError(x,'pErr');else{const p=document.getElementById('pErr');p.className='err';p.textContent='Attivazione non riuscita: '+(x.message||x);}
+      on.disabled=false;on.textContent='Riprova';});
+  };
+  if(off)off.onclick=async()=>{
+    off.disabled=true;
+    try{const s=await (await swReady()).pushManager.getSubscription();
+      if(s){await mApi({action:'unsubscribe',endpoint:s.endpoint}).catch(()=>{});await s.unsubscribe();}
+      openPush('Notifiche disattivate su questo dispositivo.');}
+    catch(x){off.disabled=false;mError(x,'pErr');}
+  };
+}
+
+document.addEventListener('click',e=>{
+  const c=k=>e.target.closest(k);
+  let el;
+  if(c('[data-multe-login]')){openMulteLogin();return;}
+  if(c('[data-multe-reload]')){M_ERR='';renderMulte();loadMulte();return;}
+  if(c('[data-multe-logout]')){if(confirm('Nascondere le multe su questo dispositivo? Per rivederle servirà di nuovo la password.')){setMPwd(null);M=null;renderMulte();}return;}
+  if(c('[data-multe-push]')){openPush();return;}
+  if(c('[data-multe-cat]')){editCatalogo();return;}
+  if(c('[data-cat-add]')){document.getElementById('cList').insertAdjacentHTML('beforeend',crow());dlg.querySelector('.crow:last-child [name=nome]').focus();return;}
+  if((el=c('[data-multe-add]'))){addMulta(el.dataset.multeAdd||'');return;}
+  if((el=c('[data-multe-player]'))){openMultePlayer(el.dataset.multePlayer);return;}
+  if((el=c('[data-m-pay]'))||(el=c('[data-m-del]'))){
+    const id=el.dataset.mPay||el.dataset.mDel, m=M.multe.find(x=>x.id===id); if(!m)return;
+    const del=!!el.dataset.mDel;
+    if(del&&!confirm(`Eliminare la multa "${m.voce}" di ${m.giocatore}?`))return;
+    el.disabled=true;
+    mApi(del?{action:'deleteMulta',id}:{action:'setPagata',id,pagata:!m.pagata})
+      .then(j=>{setM(j);openMultePlayer(dlg._mplayer||m.giocatore);}).catch(x=>{el.disabled=false;mError(x,'mpErr');});
+  }
+});
+// tornando sull'app (o toccando una notifica) le multe si ricaricano
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&mToken()&&Date.now()-M_AT>30e3)loadMulte();});
+navigator.serviceWorker?.addEventListener('message',e=>{
+  if(e.data?.type!=='open')return;
+  loadMulte();const h=new URL(e.data.url).hash;if(h){location.hash=h;document.querySelector(h)?.scrollIntoView();}
+});
+loadMulte();
 
 // nav highlight
 const links=[...document.querySelectorAll('nav a')];

@@ -115,6 +115,25 @@ function applyRenames(tabs, renames) {
   }
 }
 
+// rinominando un giocatore nella rosa, il nome cambia anche nelle multe e nelle iscrizioni alle notifiche
+async function renameInMulte(renames) {
+  const map = new Map((Array.isArray(renames) ? renames : [])
+    .filter(r => Array.isArray(r) && str(r[0], 60) && str(r[1], 60))
+    .map(r => [str(r[0], 60).toLowerCase(), str(r[1], 60)]));
+  if (!map.size) return;
+  const ms = getStore({ name: "luzzogno-multe", consistency: "strong" });
+  const m = await ms.get("multe", { type: "json" });
+  if (m?.multe?.some(x => map.has(x.giocatore.toLowerCase()))) {
+    m.multe.forEach(x => (x.giocatore = map.get(x.giocatore.toLowerCase()) ?? x.giocatore));
+    await ms.setJSON("multe", m);
+  }
+  const subs = await ms.get("push", { type: "json" });
+  if (subs && Object.values(subs).some(s => s.giocatore && map.has(s.giocatore.toLowerCase()))) {
+    Object.values(subs).forEach(s => { if (s.giocatore) s.giocatore = map.get(s.giocatore.toLowerCase()) ?? s.giocatore; });
+    await ms.setJSON("push", subs);
+  }
+}
+
 export default async req => {
   const store = getStore({ name: "luzzogno", consistency: "strong" });
   const read = async () => (await store.get(KEY, { type: "json" })) || null;
@@ -171,6 +190,7 @@ export default async req => {
     if (!Array.isArray(body.rosa)) return json({ errore: "Rosa mancante" }, 400);
     cur.rosa = cleanRosa(body.rosa);
     applyRenames(cur.tabellini, body.renames);
+    await renameInMulte(body.renames);
   } else if (body.action === "saveTabellino") {
     const g = int(body.g, 1, 99);
     if (g === null) return json({ errore: "Giornata non valida" }, 400);
